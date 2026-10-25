@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>Admin | Verde &amp; Gold</title>
+<style>
+:root{--bg:#0B0B0B;--card:#1A1A1A;--gold:#D4AF6A;--gold2:#F1DDA8;--text:#F2EDE2;--muted:#A8A093;--line:rgba(212,175,106,.28);--bad:#E0837B;--ok:#8BC79A}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,sans-serif}
+h1,h2{font-family:Georgia,serif;font-weight:600;color:var(--gold2);margin:0 0 .4em}
+.wrap{max-width:1000px;margin:0 auto;padding:24px 20px 80px}
+.card{background:var(--card);border:1px solid var(--line);padding:22px;margin-bottom:18px}
+label{display:grid;gap:6px;color:var(--muted);font-size:.85rem;margin-bottom:12px}
+input,select,textarea{font:inherit;padding:10px 12px;background:#101010;color:var(--text);border:1px solid var(--line);border-radius:2px;width:100%}
+textarea{min-height:200px;font-family:ui-monospace,monospace;font-size:.85rem}
+button{font:700 .85rem system-ui;letter-spacing:.08em;text-transform:uppercase;padding:11px 18px;background:linear-gradient(180deg,var(--gold2),var(--gold));color:#0B0B0B;border:0;cursor:pointer;border-radius:2px}
+button.ghost{background:none;color:var(--gold2);border:1px solid var(--line)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.tabs button{background:none;color:var(--muted);border:1px solid var(--line)}
+.tabs button.on{background:var(--gold);color:#0B0B0B;border-color:var(--gold)}
+.grid2{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:700px){.grid2{grid-template-columns:1fr 1fr}}
+.msg{min-height:1.4em;margin-top:10px;font-size:.9rem}
+.msg.err{color:var(--bad)}.msg.ok{color:var(--ok)}
+.hide{display:none!important}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+td,th{text-align:left;padding:9px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600}
+.help{color:var(--muted);font-size:.82rem;margin:0 0 10px}
+</style></head>
+<body>
+<div class="wrap">
+  <h1>Site admin</h1>
+  <p class="help">Edit the website content. Changes go live on the next page load.</p>
+
+  <div class="card" id="login">
+    <h2>Sign in</h2>
+    <label>Admin password<input id="pw" type="password" autocomplete="current-password"></label>
+    <button id="loginBtn">Sign in</button>
+    <p class="msg" id="loginMsg"></p>
+  </div>
+
+  <div id="panel" class="hide">
+    <div class="tabs" id="tabs">
+      <button data-t="general" class="on">General</button>
+      <button data-t="hours">Hours</button>
+      <button data-t="menu">Menu</button>
+      <button data-t="gallery">Gallery</button>
+      <button data-t="testimonials">Reviews</button>
+      <button data-t="faqs">FAQ</button>
+      <button data-t="reservations">Reservation rules</button>
+      <button data-t="bookings">Bookings</button>
+      <button data-t="orders">Orders</button>
+    </div>
+
+    <div class="card" data-s="general">
+      <div class="grid2">
+        <label>Café name<input id="g_name"></label>
+        <label>Tagline<input id="g_tagline"></label>
+        <label>Address<input id="g_address"></label>
+        <label>Phone (international)<input id="g_phone"></label>
+        <label>WhatsApp (digits only, e.g. 971500000000)<input id="g_whatsapp"></label>
+        <label>Email<input id="g_email"></label>
+        <label>Google Maps link<input id="g_mapLink"></label>
+        <label>Story heading<input id="g_storyTitle"></label>
+      </div>
+      <label>Intro text<textarea id="g_intro" style="min-height:90px"></textarea></label>
+      <label>Our story<textarea id="g_story" style="min-height:110px"></textarea></label>
+      <label>Privacy policy text<textarea id="g_privacy" style="min-height:110px"></textarea></label>
+      <label>Terms of use text<textarea id="g_terms" style="min-height:90px"></textarea></label>
+      <label>Social links (JSON: [{"label":"Instagram","url":"https://..."}])<textarea id="g_social" style="min-height:90px"></textarea></label>
+    </div>
+
+    <div class="card hide" data-s="hours">
+      <p class="help">JSON list. Each entry is {"day": "...", "hours": "..."}.</p>
+      <textarea id="hours"></textarea>
+    </div>
+
+    <div class="card hide" data-s="menu">
+      <p class="help">JSON list. Fields: id (unique, no spaces), category (Coffee, Kitchen or Pastries), name, desc, price (number, AED), tag, available (true or false).</p>
+      <textarea id="menu"></textarea>
+    </div>
+
+    <div class="card hide" data-s="gallery">
+      <p class="help">JSON list. src is an image address (https://...). Leave src empty to show a placeholder tile. Upload images to your image host and paste the link here.</p>
+      <textarea id="gallery"></textarea>
+    </div>
+
+    <div class="card hide" data-s="testimonials">
+      <p class="help">JSON list. Fields: quote, name.</p>
+      <textarea id="testimonials"></textarea>
+    </div>
+
+    <div class="card hide" data-s="faqs">
+      <p class="help">JSON list. Fields: q (question), a (answer).</p>
+      <textarea id="faqs"></textarea>
+    </div>
+
+    <div class="card hide" data-s="reservations">
+      <p class="help">Reservation rules. open and close are 24-hour times (HH:MM). leadHours is how far ahead guests must book.</p>
+      <textarea id="reservations"></textarea>
+    </div>
+
+    <div class="hide" id="saveBar" style="display:flex;gap:12px;align-items:center;margin-top:6px">
+      <button id="save">Save all changes</button>
+      <button class="ghost" id="logout">Sign out</button>
+    </div>
+    <p class="msg" id="msg"></p>
+
+    <div class="card hide" data-s="orders">
+      <h2>Orders</h2>
+      <p class="help">Card orders become paid automatically. For pay-on-arrival orders, mark them paid once you have collected the money. Paid orders add loyalty points.</p>
+      <div style="overflow-x:auto"><table id="od"><thead><tr><th>Ref</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th></tr></thead><tbody></tbody></table></div>
+      <p class="msg" id="odMsg"></p>
+    </div>
+    <div class="card hide" data-s="bookings">
+      <h2>Table bookings</h2>
+      <p class="help">Confirm or cancel bookings. Changes are saved as soon as you pick a status.</p>
+      <div style="overflow-x:auto"><table id="bk"><thead><tr><th>Ref</th><th>Guest</th><th>When</th><th>Guests</th><th>Notes</th><th>Status</th></tr></thead><tbody></tbody></table></div>
+      <p class="msg" id="bkMsg"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = window.API_URL;
+let content = null;
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const pretty = v => JSON.stringify(v, null, 2);
+
+async function api(path, opts = {}) {
+  const res = await fetch(API + path, { ...opts, credentials: "include", headers: { "Content-Type": "application/json", ...(opts.headers || {}) } });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || "Request failed");
+  return data;
+}
+
+$("loginBtn").onclick = async () => {
+  try {
+    const d = await api("/admin/login", { method: "POST", body: JSON.stringify({ password: $("pw").value }) });
+    
+    $("login").classList.add("hide"); $("panel").classList.remove("hide"); $("saveBar").classList.remove("hide");
+    await load();
+  } catch (e) { $("loginMsg").textContent = e.message; $("loginMsg").className = "msg err"; }
+};
+$("logout").onclick = async () => { await api("/admin/logout", { method: "POST" }).catch(() => {}); location.reload(); };
+
+async function load() {
+  content = await api("/content");
+  const g = content.general;
+  $("g_name").value = g.name; $("g_tagline").value = g.tagline; $("g_address").value = g.address;
+  $("g_phone").value = g.phone; $("g_whatsapp").value = g.whatsapp; $("g_email").value = g.email;
+  $("g_mapLink").value = g.mapLink; $("g_storyTitle").value = g.storyTitle;
+  $("g_intro").value = g.intro; $("g_story").value = g.story; $("g_social").value = pretty(g.social);
+  $("g_privacy").value = (content.legal || {}).privacy || ""; $("g_terms").value = (content.legal || {}).terms || "";
+  $("hours").value = pretty(content.hours);
+  $("menu").value = pretty(content.menu);
+  $("gallery").value = pretty(content.gallery);
+  $("testimonials").value = pretty(content.testimonials);
+  $("faqs").value = pretty(content.faqs);
+  $("reservations").value = pretty(content.reservations);
+  loadBookings();
+}
+
+function parseJSON(id, label) {
+  try { return JSON.parse($(id).value); }
+  catch (e) { throw new Error(`${label} is not valid JSON: ${e.message}`); }
+}
+
+$("save").onclick = async () => {
+  const msg = $("msg"); msg.className = "msg"; msg.textContent = "";
+  try {
+    const next = {
+      general: {
+        ...content.general,
+        name: $("g_name").value.trim(), tagline: $("g_tagline").value.trim(), address: $("g_address").value.trim(),
+        phone: $("g_phone").value.trim(), whatsapp: $("g_whatsapp").value.replace(/\D/g, ""), email: $("g_email").value.trim(),
+        mapLink: $("g_mapLink").value.trim(), storyTitle: $("g_storyTitle").value.trim(),
+        intro: $("g_intro").value.trim(), story: $("g_story").value.trim(),
+        social: parseJSON("g_social", "Social links")
+      },
+      legal: { privacy: $("g_privacy").value.trim(), terms: $("g_terms").value.trim() },
+      hours: parseJSON("hours", "Hours"),
+      menu: parseJSON("menu", "Menu"),
+      gallery: parseJSON("gallery", "Gallery"),
+      testimonials: parseJSON("testimonials", "Reviews"),
+      faqs: parseJSON("faqs", "FAQ"),
+      reservations: parseJSON("reservations", "Reservation rules")
+    };
+    await api("/admin/content", { method: "PUT", body: JSON.stringify(next) });
+    content = next;
+    msg.className = "msg ok"; msg.textContent = "Saved. The site shows the new content on next load.";
+  } catch (e) { msg.className = "msg err"; msg.textContent = e.message; }
+};
+
+document.querySelectorAll("#tabs button").forEach(b => b.onclick = () => {
+  document.querySelectorAll("#tabs button").forEach(x => x.classList.toggle("on", x === b));
+  document.querySelectorAll("[data-s]").forEach(s => s.classList.toggle("hide", s.dataset.s !== b.dataset.t));
+  $("saveBar").classList.toggle("hide", b.dataset.t === "bookings" || b.dataset.t === "orders");
+  if (b.dataset.t === "orders") loadOrders();
+  $("msg").textContent = "";
+});
+
+const LABEL = { pending: "Pending", confirmed: "Confirmed", cancelled: "Cancelled" };
+async function loadBookings() {
+  try {
+    const list = await api("/admin/reservations");
+    $("bk").querySelector("tbody").innerHTML = list.length ? list.map(r => `
+      <tr><td>${esc(r.id)}</td><td>${esc(r.name)}<br><span style="color:var(--muted)">${esc(r.phone)}${r.email ? " · " + esc(r.email) : ""}</span></td>
+      <td>${esc(r.date)} ${esc(r.time)}</td><td>${esc(r.guests)}</td><td>${esc(r.notes)}</td>
+      <td><select data-id="${esc(r.id)}">${Object.entries(LABEL).map(([k,v]) => `<option value="${k}" ${r.status===k?"selected":""}>${v}</option>`).join("")}</select></td></tr>`).join("")
+      : `<tr><td colspan="6" style="color:var(--muted)">No bookings yet.</td></tr>`;
+    $("bk").querySelectorAll("select").forEach(s => s.onchange = async () => {
+      try { await api("/admin/reservations/" + s.dataset.id, { method: "PATCH", body: JSON.stringify({ status: s.value }) }); $("bkMsg").className = "msg ok"; $("bkMsg").textContent = "Status updated."; }
+      catch (e) { $("bkMsg").className = "msg err"; $("bkMsg").textContent = e.message; }
+    });
+  } catch (e) { $("bkMsg").className = "msg err"; $("bkMsg").textContent = e.message; }
+}
+
+const OSTAT = { awaiting_payment: "Awaiting payment", paid: "Paid", pay_on_arrival: "Pay on arrival", completed: "Completed", cancelled: "Cancelled" };
+async function loadOrders() {
+  try {
+    const list = await api("/admin/orders");
+    $("od").querySelector("tbody").innerHTML = list.length ? list.map(o => `
+      <tr><td>${esc(o.ref)}<br><span style="color:var(--muted)">${esc(o.mode)}</span></td>
+      <td>${esc(o.name)}<br><span style="color:var(--muted)">${esc(o.phone)}</span></td>
+      <td>${o.lines.map(l => esc(l.qty + " × " + l.name)).join("<br>")}</td>
+      <td>AED ${esc(o.total)}</td>
+      <td>${esc(OSTAT[o.status] || o.status)}<br>
+        <select data-oid="${esc(o.id)}"><option value="">Change…</option><option value="paid">Mark paid</option><option value="completed">Completed</option><option value="cancelled">Cancelled</option></select></td></tr>`).join("")
+      : `<tr><td colspan="5" style="color:var(--muted)">No orders yet.</td></tr>`;
+    $("od").querySelectorAll("select[data-oid]").forEach(s => s.onchange = async () => {
+      if (!s.value) return;
+      try { await api("/admin/orders/" + s.dataset.oid, { method: "PATCH", body: JSON.stringify({ status: s.value }) }); $("odMsg").className = "msg ok"; $("odMsg").textContent = "Order updated."; loadOrders(); }
+      catch (e) { $("odMsg").className = "msg err"; $("odMsg").textContent = e.message; }
+    });
+  } catch (e) { $("odMsg").className = "msg err"; $("odMsg").textContent = e.message; }
+}
+</script>
+<script src="config.js"></script>
+</body></html>

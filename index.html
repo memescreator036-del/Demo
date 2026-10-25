@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="description" content="Verde & Gold: specialty coffee, brunch and fresh pastries in Dubai."><meta name="theme-color" content="#0B0B0B"><title>Verde &amp; Gold: Coffee, Brunch &amp; Pastries</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0B0B;--bg2:#141414;--card:#1A1A1A;--gold:#D4AF6A;--gold2:#F1DDA8;--text:#F2EDE2;--muted:#A8A093;--line:rgba(212,175,106,.28);--serif:"Cormorant Garamond",Georgia,serif;--sans:"Manrope",system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--sans);padding-bottom:84px}
+a{color:inherit;text-decoration:none}:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.05;margin:0 0 .35em}
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+.eyebrow{font:700 .72rem var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+.gold{background:linear-gradient(180deg,var(--gold2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+header{position:absolute;inset:0 0 auto;z-index:10;border-bottom:1px solid var(--line);background:rgba(11,11,11,.55);backdrop-filter:blur(8px)}
+.nav{display:flex;justify-content:space-between;align-items:center;height:68px;max-width:1140px;margin:0 auto;padding:0 22px}
+.brand{font:600 1.4rem var(--serif);letter-spacing:.14em;color:var(--gold2)}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font:600 .8rem var(--sans);letter-spacing:.12em;text-transform:uppercase}
+.nav ul a{color:var(--text);opacity:.85}.nav ul a:hover{color:var(--gold2);opacity:1}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;font:700 .85rem var(--sans);letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);border-radius:2px;color:var(--gold2);background:transparent;cursor:pointer}
+.btn.solid{background:linear-gradient(180deg,var(--gold2),var(--gold));color:#0B0B0B;border-color:transparent}
+.btn.sm{padding:9px 16px;font-size:.72rem}
+.hero{position:relative;min-height:100vh;display:grid;place-items:center;text-align:center;padding:120px 22px 90px;background:radial-gradient(ellipse at 50% 35%,rgba(212,175,106,.16),transparent 60%),linear-gradient(180deg,#1b1610 0%,#0B0B0B 90%);overflow:hidden}
+.hero .inner{position:relative;max-width:840px}
+.logo{font:600 clamp(4rem,12vw,8.5rem)/1 var(--serif);letter-spacing:.06em;margin:0}
+.rule{display:flex;align-items:center;justify-content:center;gap:16px;margin:14px 0 26px;font:600 .82rem var(--sans);letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.rule::before,.rule::after{content:"";width:64px;height:1px;background:var(--gold)}
+.hero h2{font:600 clamp(2rem,4.6vw,3.4rem)/1.1 var(--serif);letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
+.hero p{color:var(--muted);max-width:60ch;margin:0 auto 32px}
+.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+section.block{padding:96px 0}
+.center{text-align:center;margin-bottom:46px}
+.center h2{font-size:clamp(2.2rem,4.5vw,3.2rem);text-transform:uppercase;letter-spacing:.06em}
+.center p{color:var(--muted);margin:0}
+.menu{display:grid;gap:22px;grid-template-columns:1fr}
+.dish{background:var(--card);border:1px solid var(--line);padding:22px}
+.dish .top{display:flex;justify-content:space-between;gap:14px;align-items:baseline}
+.dish h3{font-size:1.6rem;margin:0}
+.dish p{color:var(--muted);font-size:.92rem;margin:8px 0 0}
+.price{font:700 1.35rem var(--serif);color:var(--gold2);white-space:nowrap}
+.reviews{display:grid;gap:18px;grid-template-columns:1fr}
+.review{border:1px solid var(--line);padding:28px 26px;background:var(--bg2);margin:0}
+.stars{color:var(--gold);letter-spacing:.2em;margin-bottom:12px}
+.review p{font:italic 1.3rem/1.4 var(--serif);margin:0 0 16px;color:var(--text)}
+.review small{color:var(--muted);font-size:.85rem}
+.two{display:grid;gap:18px;grid-template-columns:1fr}
+.panel{border:1px solid var(--line);padding:44px 34px;background:linear-gradient(160deg,#1c1812,#0e0e0e)}
+.panel h3{font-size:2.2rem;text-transform:uppercase;letter-spacing:.05em}
+.panel p{color:var(--muted)}
+.hours{width:100%;border-collapse:collapse;margin:18px 0 26px;font-size:.92rem}
+.hours td{padding:9px 0;border-bottom:1px solid var(--line)}
+.hours td:last-child{text-align:end;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:.85rem;text-align:center}
+footer a{color:var(--gold)}
+.dock{position:fixed;inset:auto 12px calc(12px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:repeat(4,1fr);background:rgba(20,20,20,.94);border:1px solid var(--line);backdrop-filter:blur(10px);padding:8px 4px;z-index:30}
+.dock a{display:grid;justify-items:center;gap:2px;font:600 .66rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:6px 0}
+.dock a[aria-current="page"]{color:var(--gold2)}.dock .i{font-size:1.15rem}
+@media (min-width:760px){.menu,.reviews,.two{grid-template-columns:1fr 1fr}}
+@media (min-width:1000px){.menu{grid-template-columns:1fr 1fr 1fr 1fr}.reviews{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:880px){.dock{display:none}body{padding-bottom:0}}
+@media (max-width:879px){.nav ul,.nav .btn{display:none}}
+</style></head>
+<body>
+<header><div class="nav">
+  <a class="brand" href="index.html" data-bind="general.name">Verde &amp; Gold</a>
+  <ul>
+    <li><a href="index.html" aria-current="page">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="visit.html">Reservations</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="checkout.html">Order Online</a></li>
+  </ul>
+  <a class="btn sm" href="visit.html">Book now</a>
+</div></header>
+
+<main>
+<section class="hero"><div class="inner">
+  <h1 class="logo gold" data-bind="general.name">Verde &amp; Gold</h1>
+  <div class="rule">The best café in Dubai</div>
+  <h2 data-bind="general.tagline">Slow coffee. Golden mornings.</h2>
+  <p data-bind="general.intro">Small-batch roasted coffee, bread baked before sunrise, and a quiet room made for lingering over every cup.</p>
+  <div class="actions">
+    <a class="btn solid" href="menu.html">Explore menu</a>
+    <a class="btn" href="visit.html">Reserve a table</a>
+  </div>
+</div></section>
+
+<section class="block" id="menu"><div class="wrap">
+  <div class="center"><p class="eyebrow">Signature menu</p><h2 class="gold">Our favourites</h2><p>Prepared fresh each morning. Prices in AED.</p></div>
+  <div class="menu" id="fav"></div>
+  <div class="center" style="margin:46px 0 0"><a class="btn" href="menu.html">See the full menu</a></div>
+</div></section>
+
+<section class="block" id="reviews" style="padding-top:0"><div class="wrap">
+  <div class="center"><p class="eyebrow">Guest reviews</p><h2 class="gold">Kind words</h2></div>
+  <div class="reviews" id="reviewList"></div>
+</div></section>
+
+<section class="block" style="padding-top:0"><div class="wrap two">
+  <div class="panel">
+    <p class="eyebrow">Order online</p>
+    <h3>Enjoy at home</h3>
+    <p>Choose pickup or delivery, pay by card or on arrival, and track your order.</p>
+    <a class="btn solid" href="checkout.html">Order now</a>
+  </div>
+  <div class="panel">
+    <p class="eyebrow">Reservations</p>
+    <h3 data-bind="general.storyTitle">Book your table</h3>
+    <table class="hours" id="hours" aria-label="Opening hours"></table>
+    <a class="btn" href="visit.html">Reserve a table</a>
+  </div>
+</div></section>
+
+<section class="block" style="padding-top:0"><div class="wrap" style="max-width:760px;text-align:center">
+  <p class="eyebrow">Our story</p>
+  <h2 class="gold" data-bind="general.storyTitle">Our Story</h2>
+  <p style="color:var(--muted)" data-bind="general.story">Verde &amp; Gold began as a weekend stall.</p>
+  <a class="btn" href="story.html" style="margin-top:14px">Read more</a>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <p style="margin:0 0 10px"><span data-bind="general.address">Dubai, UAE</span> · <a id="mapLink" href="https://maps.google.com/?q=Dubai" target="_blank" rel="noopener">Google Maps</a> · <a id="callLink" href="tel:+971500000000">Call us</a></p>
+  <p style="margin:0" id="social"></p>
+  <p style="margin:10px 0 0">© 2026 <span data-bind="general.name">Verde &amp; Gold</span> · <a href="account.html">My account</a> · href="legal.html">Privacy &amp; Terms</a></p>
+</div></footer>
+
+<nav class="dock" aria-label="Quick">
+  <a href="index.html" aria-current="page"><span class="i">⌂</span>Home</a>
+  <a href="menu.html"><span class="i">☕</span>Menu</a>
+  <a href="checkout.html"><span class="i">🛒</span>Order</a>
+  <a href="visit.html"><span class="i">📍</span>Visit</a>
+</nav>
+
+<script src="config.js"></script>
+<script>
+const API = window.API_URL;
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const get = (o, p) => p.split(".").reduce((a, k) => a?.[k], o) ?? "";
+fetch(API + "/content").then(r => { if (!r.ok) throw 0; return r.json(); }).then(c => {
+  document.querySelectorAll("[data-bind]").forEach(el => el.textContent = get(c, el.dataset.bind));
+  document.getElementById("fav").innerHTML = c.menu.filter(m => m.available).slice(0, 4).map(m =>
+    `<article class="dish"><div class="top"><h3>${esc(m.name)}</h3><span class="price">AED ${esc(m.price)}</span></div><p>${esc(m.desc)}</p></article>`).join("");
+  document.getElementById("reviewList").innerHTML = c.testimonials.slice(0, 3).map(t =>
+    `<figure class="review"><div class="stars">★★★★★</div><p>“${esc(t.quote)}”</p><small>${esc(t.name)} · Verified guest</small></figure>`).join("");
+  document.getElementById("hours").innerHTML = c.hours.map(h => `<tr><td>${esc(h.day)}</td><td>${esc(h.hours)}</td></tr>`).join("");
+  document.getElementById("mapLink").href = c.general.mapLink;
+  document.getElementById("callLink").href = "tel:" + c.general.phone.replace(/\s/g, "");
+  document.getElementById("social").innerHTML = c.general.social.map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a>`).join(" · ");
+}).catch(() => {});
+</script>
+</body></html>

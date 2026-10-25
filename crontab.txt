@@ -1,0 +1,2 @@
+# Daily database backup at 03:00. Copy the backup folder off the server too (see DEPLOY.md).
+0 3 * * * cd /opt/verde-gold/backend && /usr/bin/node backup.js >> /var/log/vg-backup.log 2>&1

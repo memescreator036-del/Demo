@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="robots" content="noindex"><meta name="theme-color" content="#0B0B0B"><title>My account | Verde &amp; Gold</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0B0B;--card:#1A1A1A;--gold:#D4AF6A;--gold2:#F1DDA8;--text:#F2EDE2;--muted:#A8A093;--line:rgba(212,175,106,.28);--bad:#E0837B;--ok:#8BC79A;--serif:"Cormorant Garamond",Georgia,serif;--sans:"Manrope",system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--sans);padding-bottom:84px}
+a{color:inherit;text-decoration:none}:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+h1,h2{font-family:var(--serif);font-weight:600;line-height:1.05;margin:0 0 .35em}
+.gold{background:linear-gradient(180deg,var(--gold2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.wrap{max-width:900px;margin:0 auto;padding:0 22px}
+header{border-bottom:1px solid var(--line);background:rgba(11,11,11,.92)}
+.nav{display:flex;justify-content:space-between;align-items:center;height:68px;max-width:900px;margin:0 auto;padding:0 22px}
+.brand{font:600 1.4rem var(--serif);letter-spacing:.14em;color:var(--gold2)}
+.nav a{color:var(--muted);font-size:.9rem}
+.box{border:1px solid var(--line);background:var(--card);padding:24px;margin:20px 0}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tabs button,.btn{font:700 .78rem var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:11px 18px;border:1px solid var(--gold);background:transparent;color:var(--gold2);cursor:pointer;border-radius:2px}
+.tabs button.on,.btn.solid{background:linear-gradient(180deg,var(--gold2),var(--gold));color:#0B0B0B;border-color:transparent}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+label{display:grid;gap:6px;color:var(--muted);font-size:.86rem;margin-bottom:12px}
+input{font:inherit;padding:11px 13px;background:#101010;color:var(--text);border:1px solid var(--line);border-radius:2px;width:100%}
+.msg{min-height:1.4em;font-size:.92rem;margin:10px 0 0}.msg.err{color:var(--bad)}.msg.ok{color:var(--ok)}
+.hide{display:none!important}
+.grid{display:grid;gap:18px;grid-template-columns:1fr}
+@media(min-width:720px){.grid{grid-template-columns:1fr 1fr}}
+.big{font:600 3rem var(--serif);color:var(--gold2)}
+.muted{color:var(--muted);font-size:.9rem}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+td,th{text-align:left;padding:10px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600}
+.st{font-weight:700;color:var(--gold2)}
+.st.paid,.st.completed{color:var(--ok)}.st.cancelled{color:var(--bad)}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:.85rem;text-align:center}
+footer a{color:var(--gold)}
+</style></head>
+<body>
+<header><div class="nav"><a class="brand" href="index.html">VERDE &amp; GOLD</a><a href="checkout.html">Order online</a></div></header>
+<main class="wrap">
+  <h1 class="gold" style="margin-top:36px">My account</h1>
+
+  <section id="auth" class="box hide">
+    <div class="tabs">
+      <button data-a="login" class="on">Log in</button>
+      <button data-a="signup">Sign up</button>
+      <button data-a="reset">Reset password</button>
+    </div>
+
+    <div id="a-login">
+      <label>Email or phone<input id="l-id" autocomplete="username"></label>
+      <label>Password<input id="l-pw" type="password" autocomplete="current-password"></label>
+      <label id="l-2fa-wrap" class="hide">Two-factor code<input id="l-2fa" inputmode="numeric" maxlength="6"></label>
+      <button class="btn solid" id="l-go">Log in</button>
+    </div>
+
+    <div id="a-signup" class="hide">
+      <label>Full name<input id="s-name" autocomplete="name"></label>
+      <label>Email or phone<input id="s-id" autocomplete="username"></label>
+      <label>Password (8+ characters)<input id="s-pw" type="password" autocomplete="new-password"></label>
+      <button class="btn solid" id="s-go">Create account</button>
+      <div id="s-verify" class="hide" style="margin-top:14px">
+        <label>Verification code<input id="s-code" inputmode="numeric" maxlength="6"></label>
+        <button class="btn solid" id="s-confirm">Verify account</button>
+      </div>
+    </div>
+
+    <div id="a-reset" class="hide">
+      <label>Email or phone<input id="r-id"></label>
+      <button class="btn" id="r-go">Send reset code</button>
+      <div id="r-step2" class="hide" style="margin-top:14px">
+        <label>Reset code<input id="r-code" inputmode="numeric" maxlength="6"></label>
+        <label>New password (8+ characters)<input id="r-pw" type="password"></label>
+        <button class="btn solid" id="r-confirm">Set new password</button>
+      </div>
+    </div>
+    <p class="msg" id="auth-msg" role="status"></p>
+  </section>
+
+  <section id="dash" class="hide">
+    <div class="grid">
+      <div class="box">
+        <p class="muted" style="margin:0">Loyalty points</p>
+        <div class="big" id="pts">0</div>
+        <p class="muted" id="ptsNote"></p>
+      </div>
+      <div class="box">
+        <p class="muted" style="margin:0">Signed in as</p>
+        <h2 id="who" style="margin:4px 0 10px"></h2>
+        <p class="muted" id="contact"></p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+          <button class="btn" id="tf">Turn on 2FA</button>
+          <button class="btn" id="logout">Log out</button>
+        </div>
+        <p class="msg" id="dash-msg"></p>
+      </div>
+    </div>
+    <div class="box">
+      <h2>Your orders</h2>
+      <p class="muted">Orders placed while signed in appear here. Points are added once an order is paid.</p>
+      <div style="overflow-x:auto"><table><thead><tr><th>Ref</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th></tr></thead><tbody id="orders"></tbody></table></div>
+      <p style="margin-top:16px"><a class="btn solid" href="checkout.html">Order again</a></p>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><p style="margin:0">© 2026 Verde &amp; Gold · <a href="index.html">Home</a> · <a href="legal.html">Privacy &amp; Terms</a></p></div></footer>
+
+<script src="config.js"></script>
+<script>
+const API = window.API_URL;
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const LABEL = { awaiting_payment: "Awaiting payment", paid: "Paid", pay_on_arrival: "Pay on arrival", completed: "Completed", cancelled: "Cancelled" };
+
+
+async function api(path, opts = {}) {
+  const res = await fetch(API + path, { ...opts, credentials: "include", headers: { "Content-Type": "application/json" } });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) { const e = new Error(data.error || "Request failed"); e.status = res.status; e.data = data; throw e; }
+  return data;
+}
+const say = (id, text, ok) => { const m = $(id); m.textContent = text; m.className = "msg " + (ok ? "ok" : "err"); };
+const devNote = d => d.devCode ? ` (test code: ${d.devCode})` : "";
+
+document.querySelectorAll("[data-a]").forEach(b => b.onclick = () => showAuth(b.dataset.a));
+function showAuth(v){
+  ["login","signup","reset"].forEach(x => $("a-" + x).classList.toggle("hide", x !== v));
+  document.querySelectorAll("[data-a]").forEach(b => b.classList.toggle("on", b.dataset.a === v));
+  $("auth-msg").textContent = "";
+}
+
+$("l-go").onclick = async () => {
+  try {
+    const d = await api("/auth/login", { method: "POST", body: JSON.stringify({ identifier: $("l-id").value, password: $("l-pw").value, code: $("l-2fa").value || undefined }) });
+    if (d.twoFactorRequired) {
+      $("l-2fa-wrap").classList.remove("hide");
+      return say("auth-msg", "Enter the two-factor code we sent you." + devNote(d), true);
+    }
+    
+    load();
+  } catch (e) { say("auth-msg", e.message); }
+};
+
+$("s-go").onclick = async () => {
+  try {
+    const d = await api("/auth/signup", { method: "POST", body: JSON.stringify({ identifier: $("s-id").value, name: $("s-name").value, password: $("s-pw").value }) });
+    $("s-verify").classList.remove("hide");
+    say("auth-msg", "We sent a verification code." + devNote(d), true);
+  } catch (e) { say("auth-msg", e.message); }
+};
+$("s-confirm").onclick = async () => {
+  try {
+    await api("/auth/verify", { method: "POST", body: JSON.stringify({ identifier: $("s-id").value, code: $("s-code").value }) });
+    say("auth-msg", "Account verified. You can log in now.", true);
+    $("l-id").value = $("s-id").value; showAuth("login");
+  } catch (e) { say("auth-msg", e.message); }
+};
+
+$("r-go").onclick = async () => {
+  try {
+    const d = await api("/auth/reset-request", { method: "POST", body: JSON.stringify({ identifier: $("r-id").value }) });
+    $("r-step2").classList.remove("hide");
+    say("auth-msg", "If an account exists, we sent a reset code." + devNote(d), true);
+  } catch (e) { say("auth-msg", e.message); }
+};
+$("r-confirm").onclick = async () => {
+  try {
+    await api("/auth/reset", { method: "POST", body: JSON.stringify({ identifier: $("r-id").value, code: $("r-code").value, newPassword: $("r-pw").value }) });
+    say("auth-msg", "Password changed. You can log in now.", true); showAuth("login");
+  } catch (e) { say("auth-msg", e.message); }
+};
+
+async function load(){
+  try {
+    const [me, pts, orders] = await Promise.all([api("/me"), api("/me/points"), api("/me/orders")]);
+    $("auth").classList.add("hide"); $("dash").classList.remove("hide");
+    $("who").textContent = me.name;
+    $("contact").textContent = me.email || me.phone || "";
+    $("pts").textContent = pts.points;
+    $("ptsNote").textContent = `${pts.paidOrders} paid order${pts.paidOrders === 1 ? "" : "s"}. ${pts.rule}.`;
+    $("tf").textContent = me.twoFA ? "Turn off 2FA" : "Turn on 2FA";
+    $("tf").dataset.on = me.twoFA ? "1" : "0";
+    $("orders").innerHTML = orders.length ? orders.map(o => `
+      <tr><td>${esc(o.ref)}<br><span class="muted">${esc(o.mode)}</span></td>
+      <td>${new Date(o.createdAt).toLocaleDateString("en-GB")}</td>
+      <td>${o.lines.map(l => esc(l.qty + " × " + l.name)).join("<br>")}</td>
+      <td>AED ${esc(o.total)}</td>
+      <td class="st ${esc(o.status)}">${esc(LABEL[o.status] || o.status)}</td></tr>`).join("")
+      : `<tr><td colspan="5" class="muted">No orders yet.</td></tr>`;
+  } catch (e) {
+    if (e.status === 401) { $("dash").classList.add("hide"); $("auth").classList.remove("hide"); showAuth("login"); return; }
+    say("dash-msg", e.message);
+  }
+}
+
+$("tf").onclick = async () => {
+  try {
+    await api("/me/2fa", { method: "PATCH", body: JSON.stringify({ enabled: $("tf").dataset.on !== "1" }) });
+    load();
+  } catch (e) { say("dash-msg", e.message); }
+};
+$("logout").onclick = async () => {
+  try { await api("/auth/logout", { method: "POST" }); } catch (_) {}
+  
+  $("dash").classList.add("hide"); $("auth").classList.remove("hide"); showAuth("login");
+};
+
+load();
+</script>
+</body></html>

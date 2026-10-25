@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#0B0B0B"><title>Menu | Verde &amp; Gold</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0B0B;--card:#1A1A1A;--gold:#D4AF6A;--gold2:#F1DDA8;--text:#F2EDE2;--muted:#A8A093;--line:rgba(212,175,106,.28);--serif:"Cormorant Garamond",Georgia,serif;--sans:"Manrope",system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--sans);padding-bottom:84px}
+a{color:inherit;text-decoration:none}:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.05;margin:0 0 .35em}
+.gold{background:linear-gradient(180deg,var(--gold2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+header{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line);background:rgba(11,11,11,.92);backdrop-filter:blur(8px)}
+.nav{display:flex;justify-content:space-between;align-items:center;height:68px;max-width:1140px;margin:0 auto;padding:0 22px}
+.brand{font:600 1.4rem var(--serif);letter-spacing:.14em;color:var(--gold2)}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font:600 .8rem var(--sans);letter-spacing:.12em;text-transform:uppercase}
+.nav ul a{color:var(--text);opacity:.85}.nav ul a[aria-current="page"]{color:var(--gold2);opacity:1}
+.btn{display:inline-flex;align-items:center;padding:9px 16px;font:700 .72rem var(--sans);letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);color:#0B0B0B;background:linear-gradient(180deg,var(--gold2),var(--gold));border-radius:2px}
+.intro{padding:76px 0 40px;text-align:center}
+.intro h1{font-size:clamp(3rem,8vw,5.4rem);text-transform:uppercase;letter-spacing:.06em}
+.intro p{color:var(--muted);max-width:56ch;margin:0 auto}
+.tabs{position:sticky;top:68px;z-index:5;background:rgba(11,11,11,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.tabs .wrap{display:flex;gap:10px;overflow-x:auto;padding-top:14px;padding-bottom:14px;scrollbar-width:none}
+.tabs a{flex:none;border:1px solid var(--line);padding:8px 18px;border-radius:30px;font:600 .8rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+section.cat{padding:64px 0 16px}
+.cat h2{font-size:clamp(2.2rem,4.5vw,3rem);text-transform:uppercase;letter-spacing:.05em;text-align:center;margin-bottom:6px}
+.cat .sub{text-align:center;color:var(--muted);margin:0 0 36px;font-size:.95rem}
+.grid{display:grid;gap:18px;grid-template-columns:1fr}
+.item{background:var(--card);border:1px solid var(--line);padding:22px;display:flex;flex-direction:column;gap:8px}
+.item .top{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.item h3{font-size:1.5rem;margin:0}
+.price{font:700 1.3rem var(--serif);color:var(--gold2);white-space:nowrap}
+.item p{margin:0;color:var(--muted);font-size:.92rem}
+.tag{align-self:flex-start;font:700 .66rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);padding:3px 9px;border-radius:20px;margin-top:4px}
+.note{text-align:center;color:var(--muted);font-size:.9rem;margin:48px 0 0}
+.note a{color:var(--gold)}
+footer{border-top:1px solid var(--line);margin-top:64px;padding:34px 0;color:var(--muted);font-size:.85rem;text-align:center}
+footer a{color:var(--gold)}
+.dock{position:fixed;inset:auto 12px calc(12px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:repeat(4,1fr);background:rgba(20,20,20,.94);border:1px solid var(--line);padding:8px 4px;z-index:30}
+.dock a{display:grid;justify-items:center;gap:2px;font:600 .66rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:6px 0}
+.dock a[aria-current="page"]{color:var(--gold2)}.dock .i{font-size:1.15rem}
+@media (min-width:760px){.grid{grid-template-columns:1fr 1fr}}
+@media (min-width:1000px){.grid{grid-template-columns:1fr 1fr 1fr}}
+@media (min-width:880px){.dock{display:none}body{padding-bottom:0}}
+@media (max-width:879px){.nav ul{display:none}}
+</style></head>
+<body>
+<header><div class="nav">
+  <a class="brand" href="index.html" data-bind="general.name">Verde &amp; Gold</a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html" aria-current="page">Menu</a></li>
+    <li><a href="visit.html">Reservations</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="checkout.html">Order Online</a></li>
+  </ul>
+  <a class="btn" href="visit.html">Book now</a>
+</div></header>
+
+<main>
+<section class="intro"><div class="wrap">
+  <p style="font:700 .72rem var(--sans);letter-spacing:.28em;text-transform:uppercase;color:#D4AF6A">Our menu</p>
+  <h1 class="gold">Coffee &amp; Kitchen</h1>
+  <p>Roasted in small batches and prepared fresh each morning. All prices in UAE Dirhams (AED), VAT included.</p>
+</div></section>
+<nav class="tabs" id="tabs" aria-label="Menu sections"><div class="wrap"></div></nav>
+<div id="sections"><p class="note">Loading menu…</p></div>
+<p class="note" style="padding:0 22px 24px">Allergies? Please tell our team when you order. <a href="checkout.html">Order online</a> or <a href="visit.html">reserve a table</a>.</p>
+</main>
+
+<footer><div class="wrap"><p style="margin:0"><span data-bind="general.address">Dubai, UAE</span> · <a href="account.html">My account</a> · href="legal.html">Privacy &amp; Terms</a></p></div></footer>
+<nav class="dock" aria-label="Quick">
+  <a href="index.html"><span class="i">⌂</span>Home</a>
+  <a href="menu.html" aria-current="page"><span class="i">☕</span>Menu</a>
+  <a href="checkout.html"><span class="i">🛒</span>Order</a>
+  <a href="visit.html"><span class="i">📍</span>Visit</a>
+</nav>
+
+<script src="config.js"></script>
+<script>
+const API = window.API_URL;
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const slug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-");
+fetch(API + "/content").then(r => { if (!r.ok) throw 0; return r.json(); }).then(c => {
+  document.querySelectorAll("[data-bind]").forEach(el => { el.textContent = c.general.name && el.dataset.bind === "general.name" ? c.general.name : el.textContent; });
+  const cats = [...new Set(c.menu.filter(m => m.available).map(m => m.category))];
+  document.querySelector("#tabs .wrap").innerHTML = cats.map(k => `<a href="#${slug(k)}">${esc(k)}</a>`).join("");
+  document.getElementById("sections").innerHTML = cats.map(k => `
+    <section class="cat" id="${slug(k)}"><div class="wrap">
+      <h2 class="gold">${esc(k)}</h2>
+      <div class="grid">${c.menu.filter(m => m.available && m.category === k).map(m => `
+        <article class="item"><div class="top"><h3>${esc(m.name)}</h3><span class="price">AED ${esc(m.price)}</span></div>
+        <p>${esc(m.desc)}</p>${m.tag ? `<span class="tag">${esc(m.tag)}</span>` : ""}</article>`).join("")}</div>
+    </div></section>`).join("");
+}).catch(() => { document.getElementById("sections").innerHTML = `<p class="note">We cannot load the menu right now. Please call us.</p>`; });
+</script>
+</body></html>

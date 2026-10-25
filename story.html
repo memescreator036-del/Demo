@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#0B0B0B"><title>Our Story | Verde &amp; Gold</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0B0B;--card:#1A1A1A;--gold:#D4AF6A;--gold2:#F1DDA8;--text:#F2EDE2;--muted:#A8A093;--line:rgba(212,175,106,.28);--serif:"Cormorant Garamond",Georgia,serif;--sans:"Manrope",system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 var(--sans);padding-bottom:84px}
+a{color:inherit;text-decoration:none}
+h1,h2{font-family:var(--serif);font-weight:600;line-height:1.05;margin:0 0 .35em}
+.gold{background:linear-gradient(180deg,var(--gold2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+header{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line);background:rgba(11,11,11,.92);backdrop-filter:blur(8px)}
+.nav{display:flex;justify-content:space-between;align-items:center;height:68px;max-width:1140px;margin:0 auto;padding:0 22px}
+.brand{font:600 1.4rem var(--serif);letter-spacing:.14em;color:var(--gold2)}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font:600 .8rem var(--sans);letter-spacing:.12em;text-transform:uppercase}
+.nav ul a{color:var(--text);opacity:.85}
+.story{display:grid;gap:40px;padding:80px 0;align-items:center}
+@media(min-width:880px){.story{grid-template-columns:1.1fr .9fr}}
+.story h1{font-size:clamp(3rem,7vw,5rem);text-transform:uppercase;letter-spacing:.05em}
+.story p{color:var(--text);white-space:pre-line}
+.photo{aspect-ratio:4/5;border:1px solid var(--line);background:radial-gradient(circle at 50% 40%,#3a2e1a,#141414 70%);display:flex;align-items:flex-end;padding:16px;color:var(--gold);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
+.cta{text-align:center;padding:30px 0 60px}
+.btn{display:inline-flex;padding:14px 28px;font:700 .85rem var(--sans);letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);color:#0B0B0B;background:linear-gradient(180deg,var(--gold2),var(--gold));border-radius:2px}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:.85rem;text-align:center}
+footer a{color:var(--gold)}
+.dock{position:fixed;inset:auto 12px calc(12px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:repeat(4,1fr);background:rgba(20,20,20,.94);border:1px solid var(--line);padding:8px 4px;z-index:30}
+.dock a{display:grid;justify-items:center;gap:2px;font:600 .66rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:6px 0}
+.dock .i{font-size:1.15rem}
+@media(min-width:880px){.dock{display:none}body{padding-bottom:0}}
+@media(max-width:879px){.nav ul{display:none}}
+</style></head>
+<body>
+<header><div class="nav">
+  <a class="brand" href="index.html" data-bind="general.name">Verde &amp; Gold</a>
+  <ul><li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="visit.html">Reservations</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="checkout.html">Order Online</a></li></ul>
+</div></header>
+<main class="wrap">
+  <section class="story">
+    <div>
+      <p style="font:700 .72rem var(--sans);letter-spacing:.28em;text-transform:uppercase;color:#D4AF6A">About us</p>
+      <h1 class="gold" data-bind="general.storyTitle">Our Story</h1>
+      <p data-bind="general.story">Verde &amp; Gold began as a weekend stall.</p>
+    </div>
+    <div class="photo" role="img" aria-label="Placeholder for founders photograph">Photo: founders at the bar</div>
+  </section>
+  <section class="cta"><a class="btn" href="menu.html">See the menu</a></section>
+</main>
+<footer><div class="wrap"><p style="margin:0"><span data-bind="general.address">Dubai, UAE</span> · <a href="account.html">My account</a> · href="legal.html">Privacy &amp; Terms</a></p></div></footer>
+<nav class="dock" aria-label="Quick">
+  <a href="index.html"><span class="i">⌂</span>Home</a><a href="menu.html"><span class="i">☕</span>Menu</a><a href="checkout.html"><span class="i">🛒</span>Order</a><a href="visit.html"><span class="i">📍</span>Visit</a>
+</nav>
+<script src="config.js"></script>
+<script>
+const API = window.API_URL;
+const get = (o, p) => p.split(".").reduce((a, k) => a?.[k], o) ?? "";
+fetch(API + "/content").then(r => { if (!r.ok) throw 0; return r.json(); }).then(c => {
+  document.querySelectorAll("[data-bind]").forEach(el => el.textContent = get(c, el.dataset.bind));
+}).catch(() => {});
+</script>
+</body></html>

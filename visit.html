@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#0B0B0B"><title>Reservations &amp; Visit | Verde &amp; Gold</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0B0B;--card:#1A1A1A;--gold:#D4AF6A;--gold2:#F1DDA8;--text:#F2EDE2;--muted:#A8A093;--line:rgba(212,175,106,.28);--serif:"Cormorant Garamond",Georgia,serif;--sans:"Manrope",system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--sans);padding-bottom:84px}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.05;margin:0 0 .35em}
+.gold{background:linear-gradient(180deg,var(--gold2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+.eyebrow{font:700 .72rem var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+header{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line);background:rgba(11,11,11,.92);backdrop-filter:blur(8px)}
+.nav{display:flex;justify-content:space-between;align-items:center;height:68px;max-width:1140px;margin:0 auto;padding:0 22px}
+.brand{font:600 1.4rem var(--serif);letter-spacing:.14em;color:var(--gold2)}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font:600 .8rem var(--sans);letter-spacing:.12em;text-transform:uppercase}
+.nav ul a{color:var(--text);opacity:.85}.nav ul a[aria-current="page"]{color:var(--gold2);opacity:1}
+.btn{display:inline-flex;align-items:center;padding:14px 28px;font:700 .85rem var(--sans);letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold2);background:transparent;cursor:pointer;border-radius:2px}
+.btn.solid{background:linear-gradient(180deg,var(--gold2),var(--gold));color:#0B0B0B;border-color:transparent}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.intro{padding:70px 0 30px;text-align:center}
+.intro h1{font-size:clamp(3rem,8vw,5.2rem);text-transform:uppercase;letter-spacing:.05em}
+.intro p{color:var(--muted);max-width:56ch;margin:0 auto}
+.layout{display:grid;gap:26px;padding:20px 0 60px}
+@media(min-width:900px){.layout{grid-template-columns:1.1fr .9fr;align-items:start}}
+.box{border:1px solid var(--line);background:var(--card);padding:26px}
+.box h2{font-size:1.9rem;margin-bottom:14px}
+label{display:grid;gap:6px;color:var(--muted);font-size:.86rem;margin-bottom:14px}
+input,select,textarea{font:inherit;padding:12px 14px;background:#101010;color:var(--text);border:1px solid var(--line);border-radius:2px;width:100%}
+textarea{min-height:80px}
+.grid2{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:600px){.grid2{grid-template-columns:1fr 1fr}}
+.msg{min-height:1.4em;font-size:.92rem;margin-top:10px}
+.msg.err{color:#E0837B}.msg.ok{color:#8BC79A}
+.hours{width:100%;border-collapse:collapse;font-size:.95rem}
+.hours td{padding:9px 0;border-bottom:1px solid var(--line)}
+.hours td:last-child{text-align:end;color:var(--muted)}
+details{border-bottom:1px solid var(--line);padding:14px 0}
+summary{cursor:pointer;font:600 1.3rem var(--serif);list-style:none}
+details p{color:var(--muted);margin:8px 0 0}
+.addr{color:var(--muted);margin:8px 0 18px}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:.85rem;text-align:center}
+footer a{color:var(--gold)}
+.dock{position:fixed;inset:auto 12px calc(12px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:repeat(4,1fr);background:rgba(20,20,20,.94);border:1px solid var(--line);padding:8px 4px;z-index:30}
+.dock a{display:grid;justify-items:center;gap:2px;font:600 .66rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:6px 0}
+.dock a[aria-current="page"]{color:var(--gold2)}.dock .i{font-size:1.15rem}
+@media(min-width:880px){.dock{display:none}body{padding-bottom:0}}
+@media(max-width:879px){.nav ul,.nav .btn{display:none}}
+</style></head>
+<body>
+<header><div class="nav">
+  <a class="brand" href="index.html">VERDE &amp; GOLD</a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="visit.html" aria-current="page">Reservations</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="checkout.html">Order Online</a></li>
+  </ul>
+  <a class="btn solid" href="#book" style="padding:9px 16px;font-size:.72rem">Book now</a>
+</div></header>
+
+<main>
+<section class="intro"><div class="wrap">
+  <p class="eyebrow">Reservations &amp; visit</p>
+  <h1 class="gold">Reserve a table</h1>
+  <p>Book online, or call us. Groups of six or more should book ahead.</p>
+</div></section>
+
+<div class="wrap layout">
+  <section class="box" id="book">
+    <h2>Book a table</h2>
+    <form id="resForm" novalidate>
+      <div class="grid2">
+        <label>Full name *<input name="name" required autocomplete="name"></label>
+        <label>Mobile *<input name="phone" type="tel" required autocomplete="tel" placeholder="+971..."></label>
+        <label>Email<input name="email" type="email" autocomplete="email"></label>
+        <label>Guests *<select name="guests" id="guests"></select></label>
+        <label>Date *<input name="date" type="date" id="date" required></label>
+        <label>Time *<select name="time" id="time" required></select></label>
+      </div>
+      <label>Notes (allergies, celebrations, seating)<textarea name="notes"></textarea></label>
+      <button class="btn solid" id="submit" type="submit">Request booking</button>
+      <p class="msg" id="msg" role="status"></p>
+      <p style="color:var(--muted);font-size:.85rem;margin:12px 0 0">We confirm every booking by phone or WhatsApp.</p>
+    </form>
+  </section>
+
+  <aside>
+    <section class="box" style="margin-bottom:20px">
+      <h2>Visit us</h2>
+      <p class="addr" id="address"></p>
+      <table class="hours" id="hours" aria-label="Opening hours"></table>
+      <div class="links">
+        <a class="btn" id="mapLink" href="#" target="_blank" rel="noopener">Open in Google Maps</a>
+        <a class="btn" id="callLink" href="#">Call us</a>
+      </div>
+    </section>
+    <section class="box">
+      <h2>Questions</h2>
+      <div id="faqs"></div>
+    </section>
+  </aside>
+</div>
+</main>
+
+<footer><div class="wrap"><p style="margin:0">© 2026 <span id="brand">Verde &amp; Gold</span> · <a href="account.html">My account</a> · href="legal.html">Privacy &amp; Terms</a></p></div></footer>
+
+<nav class="dock" aria-label="Quick">
+  <a href="index.html"><span class="i">⌂</span>Home</a>
+  <a href="menu.html"><span class="i">☕</span>Menu</a>
+  <a href="checkout.html"><span class="i">🛒</span>Order</a>
+  <a href="visit.html" aria-current="page"><span class="i">📍</span>Visit</a>
+</nav>
+
+<script>
+const API = window.API_URL;
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+function timeOptions(r){
+  const out = []; const [oh, om] = r.open.split(":").map(Number); const [ch, cm] = r.close.split(":").map(Number);
+  for (let t = oh*60+om; t <= ch*60+cm; t += r.slotMinutes) out.push(String(Math.floor(t/60)).padStart(2,"0") + ":" + String(t%60).padStart(2,"0"));
+  return out;
+}
+
+async function init(){
+  // Set defaults so the form works even if the content request fails.
+  $("date").min = new Date().toISOString().slice(0,10);
+  try {
+    const c = await fetch(API + "/content").then(r => { if (!r.ok) throw 0; return r.json(); });
+    $("brand").textContent = c.general.name;
+    $("address").textContent = c.general.address;
+    $("mapLink").href = c.general.mapLink;
+    $("callLink").href = "tel:" + c.general.phone.replace(/\s/g,"");
+    $("hours").innerHTML = c.hours.map(h => `<tr><td>${esc(h.day)}</td><td>${esc(h.hours)}</td></tr>`).join("");
+    $("faqs").innerHTML = c.faqs.map(f => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("");
+    const r = c.reservations;
+    $("guests").innerHTML = Array.from({length: r.maxGuests}, (_, i) => `<option value="${i+1}" ${i===1?"selected":""}>${i+1} ${i===0?"guest":"guests"}</option>`).join("");
+    $("time").innerHTML = timeOptions(r).map(t => `<option>${t}</option>`).join("");
+    window.RULES = r;
+  } catch (e) {
+    $("msg").className = "msg err";
+    $("msg").textContent = "We cannot load booking times right now. Please call us.";
+  }
+}
+
+$("resForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target, msg = $("msg");
+  msg.className = "msg"; msg.textContent = "";
+  if (!f.name.value.trim() || !f.phone.value.trim() || !f.date.value) { msg.className = "msg err"; msg.textContent = "Please fill in your name, mobile and date."; return; }
+  $("submit").disabled = true;
+  try {
+    const res = await fetch(API + "/reservations", { method: "POST", headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({ name: f.name.value.trim(), phone: f.phone.value.trim(), email: f.email.value.trim(), guests: f.guests.value, date: f.date.value, time: f.time.value, notes: f.notes.value.trim() }) });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || "Booking failed");
+    f.reset(); msg.className = "msg ok";
+    msg.textContent = "Thank you. Your request " + data.id + " is received. We will confirm by phone or WhatsApp.";
+  } catch (err) { msg.className = "msg err"; msg.textContent = err.message; }
+  finally { $("submit").disabled = false; }
+});
+
+init();
+</script>
+<script src="config.js"></script>
+</body></html>

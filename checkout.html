@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#0B0B0B"><title>Checkout | Verde &amp; Gold</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0B0B;--card:#1A1A1A;--gold:#D4AF6A;--gold2:#F1DDA8;--text:#F2EDE2;--muted:#A8A093;--line:rgba(212,175,106,.28);--bad:#E0837B;--ok:#8BC79A;--serif:"Cormorant Garamond",Georgia,serif;--sans:"Manrope",system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--sans);padding-bottom:84px}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+h1,h2{font-family:var(--serif);font-weight:600;margin:0 0 .35em;line-height:1.05}
+.gold{background:linear-gradient(180deg,var(--gold2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+header{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line);background:rgba(11,11,11,.92);backdrop-filter:blur(8px)}
+.nav{display:flex;justify-content:space-between;align-items:center;height:68px;max-width:1140px;margin:0 auto;padding:0 22px}
+.brand{font:600 1.4rem var(--serif);letter-spacing:.14em;color:var(--gold2)}
+.nav a.back{color:var(--muted);font-size:.9rem}
+.layout{display:grid;gap:26px;padding:40px 0 60px}
+@media(min-width:900px){.layout{grid-template-columns:1.3fr .9fr;align-items:start}.summary{position:sticky;top:90px}}
+.box{border:1px solid var(--line);background:var(--card);padding:22px;margin-bottom:18px}
+.box h2{font-size:1.7rem}
+.cat{font:700 .72rem var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:16px 0 4px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px dotted var(--line)}
+.row small{display:block;color:var(--muted)}
+.price{font-weight:700;color:var(--gold2);white-space:nowrap}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:34px;height:34px;border:1px solid var(--line);background:#101010;color:var(--text);font-size:1.1rem;cursor:pointer}
+.qty button:disabled{opacity:.35;cursor:not-allowed}
+.qty span{min-width:20px;text-align:center;font-weight:700}
+label{display:grid;gap:6px;color:var(--muted);font-size:.86rem;margin-bottom:12px}
+input,select,textarea{font:inherit;padding:11px 13px;background:#101010;color:var(--text);border:1px solid var(--line);border-radius:2px;width:100%}
+textarea{min-height:70px}
+.opts{display:grid;gap:10px;grid-template-columns:1fr 1fr;margin-bottom:12px}
+.opts label{display:flex;align-items:center;gap:10px;padding:14px;border:1px solid var(--line);color:var(--text);cursor:pointer;margin:0}
+.opts input{width:auto}
+.check{display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:.9rem}
+.check input{width:auto;margin-top:4px}
+.line{display:flex;justify-content:space-between;padding:6px 0;color:var(--muted)}
+.total{display:flex;justify-content:space-between;font:700 1.4rem var(--serif);border-top:1px solid var(--line);margin-top:10px;padding-top:12px}
+.btn{display:block;width:100%;margin-top:16px;padding:15px;background:linear-gradient(180deg,var(--gold2),var(--gold));color:#0B0B0B;border:0;font:700 .85rem var(--sans);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border-radius:2px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.msg{min-height:1.4em;font-size:.9rem;margin-top:10px}
+.msg.err{color:var(--bad)}.msg.ok{color:var(--ok)}
+.empty{color:var(--muted);font-style:italic}
+.done{text-align:center;padding:40px 10px}
+.done .ref{font:700 1.6rem var(--serif);color:var(--gold2);margin:10px 0}
+.hide{display:none!important}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:.85rem;text-align:center}
+.dock{position:fixed;inset:auto 12px calc(12px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:repeat(4,1fr);background:rgba(20,20,20,.94);border:1px solid var(--line);padding:8px 4px;z-index:30}
+.dock a{display:grid;justify-items:center;gap:2px;font:600 .66rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:6px 0}
+.dock a[aria-current="page"]{color:var(--gold2)}.dock .i{font-size:1.15rem}
+@media(min-width:880px){.dock{display:none}body{padding-bottom:0}}
+</style></head>
+<body>
+<header><div class="nav"><a class="brand" href="index.html">VERDE &amp; GOLD</a><a class="back" href="menu.html">← Back to menu</a></div></header>
+
+<main class="wrap">
+  <section id="done" class="box done hide">
+    <p class="eyebrow" style="font:700 .72rem var(--sans);letter-spacing:.28em;text-transform:uppercase;color:var(--gold)">Order</p>
+    <h2 class="gold" id="doneTitle">Thank you</h2>
+    <p class="ref" id="doneRef"></p>
+    <p id="doneText" style="color:var(--muted)"></p>
+    <p style="margin-top:18px"><a href="leaderboard.html" style="color:var(--gold)">See the loyalty leaderboard</a> · <a href="menu.html" style="color:var(--gold)">Back to menu</a></p>
+  </section>
+
+  <div id="shop" class="layout">
+    <div>
+      <h1 class="gold" style="margin-top:20px">Checkout</h1>
+      <section class="box">
+        <h2>1. Your order</h2>
+        <div id="menu"><p class="empty">Loading menu…</p></div>
+      </section>
+
+      <form id="form" class="box" novalidate>
+        <h2>2. Pickup or delivery</h2>
+        <div class="opts">
+          <label><input type="radio" name="mode" value="pickup" checked> Pickup</label>
+          <label><input type="radio" name="mode" value="delivery"> Delivery</label>
+        </div>
+        <label id="addrWrap" class="hide">Delivery address<textarea name="address" placeholder="Building, flat, street, area"></textarea></label>
+        <label>Preferred time<select name="time" id="time"><option value="asap">As soon as possible</option></select></label>
+
+        <h2 style="margin-top:14px">3. Your details</h2>
+        <label>Full name *<input name="name" autocomplete="name" required></label>
+        <label>Mobile *<input name="phone" type="tel" autocomplete="tel" placeholder="+971..." required></label>
+        <label>Notes (optional)<textarea name="notes" placeholder="Allergies, extra napkins, etc."></textarea></label>
+        <label class="check"><input type="checkbox" name="optIn"> Show my name on the loyalty leaderboard (1 point per AED spent)</label>
+        <label>Name to display<input name="displayName" placeholder="e.g. Sara M."></label>
+
+        <h2 style="margin-top:14px">4. Payment</h2>
+        <div class="opts">
+          <label><input type="radio" name="payment" value="card" checked> Pay by card now</label>
+          <label><input type="radio" name="payment" value="arrival"> Pay on arrival</label>
+        </div>
+        <p class="msg" id="payNote" style="color:var(--muted)">You will be taken to a secure card payment page.</p>
+
+        <button class="btn" id="place" type="submit" disabled>Place order</button>
+        <p class="msg" id="msg" role="status"></p>
+      </form>
+    </div>
+
+    <aside class="summary">
+      <section class="box">
+        <h2>Summary</h2>
+        <div id="lines"></div>
+        <div class="line"><span>Subtotal</span><span id="sub">AED 0</span></div>
+        <div class="line"><span>Delivery</span><span id="fee">AED 0</span></div>
+        <div class="total"><span>Total</span><span id="total">AED 0</span></div>
+        <p class="msg" style="color:var(--muted)">Prices include VAT. Totals are calculated by our server.</p>
+      </section>
+    </aside>
+  </div>
+</main>
+
+<footer><div class="wrap"><p style="margin:0">© 2026 Verde &amp; Gold · <a href="legal.html" style="color:var(--gold)">Privacy &amp; Terms</a></p></div></footer>
+<nav class="dock" aria-label="Quick">
+  <a href="index.html"><span class="i">⌂</span>Home</a>
+  <a href="menu.html"><span class="i">☕</span>Menu</a>
+  <a href="checkout.html" aria-current="page"><span class="i">🛒</span>Order</a>
+  <a href="visit.html"><span class="i">📍</span>Visit</a>
+</nav>
+
+<script>
+const API = window.API_URL;
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const aed = n => "AED " + Number(n).toFixed(2).replace(/\.00$/, "");
+const DELIVERY_FEE = 10;
+let menu = [], cart = {};
+
+function setMsg(t, ok){ const m = $("msg"); m.textContent = t; m.className = "msg " + (ok ? "ok" : "err"); }
+
+// Return-from-payment view: /checkout.html?order=ID&status=success|cancelled
+const params = new URLSearchParams(location.search);
+if (params.get("order")) showOrder(params.get("order"), params.get("status"));
+
+async function showOrder(id, status){
+  $("shop").classList.add("hide"); $("done").classList.remove("hide");
+  try {
+    const o = await fetch(API + "/orders/" + encodeURIComponent(id)).then(r => r.json());
+    if (o.error) throw new Error(o.error);
+    $("doneRef").textContent = "Reference " + o.ref;
+    if (o.status === "paid") { $("doneTitle").textContent = "Payment received"; $("doneText").textContent = "Thank you. We are preparing your order."; }
+    else if (status === "cancelled") { $("doneTitle").textContent = "Payment cancelled"; $("doneText").innerHTML = 'Your order has not been paid. <a href="checkout.html" style="color:var(--gold)">Try again</a>.'; }
+    else { $("doneTitle").textContent = "Thank you"; $("doneText").textContent = "We are confirming your payment. This page updates when it is received."; setTimeout(() => showOrder(id, status), 4000); }
+  } catch (e) { $("doneTitle").textContent = "Order not found"; $("doneText").textContent = e.message; }
+}
+
+async function loadMenu(){
+  try {
+    const c = await fetch(API + "/content").then(r => { if (!r.ok) throw 0; return r.json(); });
+    menu = c.menu.filter(m => m.available);
+    const cats = [...new Set(menu.map(m => m.category))];
+    $("menu").innerHTML = cats.map(cat => `<div class="cat">${esc(cat)}</div>` + menu.filter(m => m.category === cat).map(m =>
+      `<div class="row"><div>${esc(m.name)}<small>${aed(m.price)}</small></div>
+       <div class="qty"><button type="button" data-id="${esc(m.id)}" data-d="-1" aria-label="Remove one">−</button><span id="q-${esc(m.id)}">0</span><button type="button" data-id="${esc(m.id)}" data-d="1" aria-label="Add one">+</button></div></div>`).join("")).join("");
+    const t = $("time"); const now = new Date(); const opts = [];
+    for (let h = 8; h <= 22; h++) for (const m of [0, 30]) { if (h === 22 && m === 30) continue; opts.push(String(h).padStart(2,"0") + ":" + (m ? "30" : "00")); }
+    t.innerHTML = `<option value="asap">As soon as possible</option>` + opts.map(x => `<option>${x}</option>`).join("");
+    render();
+  } catch (e) { $("menu").innerHTML = `<p class="empty">We cannot load the menu right now. Please call us.</p>`; }
+}
+
+$("menu").addEventListener("click", e => {
+  const b = e.target.closest("button[data-id]"); if (!b) return;
+  const id = b.dataset.id;
+  cart[id] = Math.min(20, Math.max(0, (cart[id] || 0) + Number(b.dataset.d)));
+  if (!cart[id]) delete cart[id];
+  render();
+});
+
+function totals(){
+  const mode = document.querySelector('input[name=mode]:checked').value;
+  const sub = Object.entries(cart).reduce((s, [id, q]) => s + (menu.find(m => m.id === id)?.price || 0) * q, 0);
+  const fee = mode === "delivery" && sub > 0 ? DELIVERY_FEE : 0;
+  return { sub, fee, total: sub + fee };
+}
+
+function render(){
+  menu.forEach(m => { const el = $("q-" + m.id); if (el) el.textContent = cart[m.id] || 0; });
+  document.querySelectorAll('button[data-d="-1"]').forEach(b => b.disabled = !cart[b.dataset.id]);
+  const entries = Object.entries(cart);
+  $("lines").innerHTML = entries.length
+    ? entries.map(([id, q]) => { const m = menu.find(x => x.id === id); return `<div class="line"><span>${q} × ${esc(m.name)}</span><span>${aed(m.price * q)}</span></div>`; }).join("")
+    : `<p class="empty">Your basket is empty.</p>`;
+  const t = totals();
+  $("sub").textContent = aed(t.sub); $("fee").textContent = aed(t.fee); $("total").textContent = aed(t.total);
+  $("place").disabled = entries.length === 0;
+}
+
+document.querySelectorAll('input[name=mode]').forEach(r => r.addEventListener("change", () => {
+  $("addrWrap").classList.toggle("hide", document.querySelector('input[name=mode]:checked').value !== "delivery");
+  render();
+}));
+document.querySelectorAll('input[name=payment]').forEach(r => r.addEventListener("change", () => {
+  $("payNote").textContent = r.value === "card" ? "You will be taken to a secure card payment page." : "Pay by cash or card when you collect or receive your order.";
+}));
+
+$("form").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target;
+  const mode = document.querySelector('input[name=mode]:checked').value;
+  const payment = document.querySelector('input[name=payment]:checked').value;
+  if (!f.name.value.trim()) return setMsg("Please enter your name.");
+  if (!/^\+?[0-9 ]{8,}$/.test(f.phone.value.trim())) return setMsg("Please enter a valid mobile number.");
+  if (mode === "delivery" && !f.address.value.trim()) return setMsg("Please enter a delivery address.");
+  $("place").disabled = true; setMsg("Placing your order…", true);
+  try {
+    const res = await fetch(API + "/orders", { method: "POST", credentials: "include", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
+      items: Object.entries(cart).map(([id, qty]) => ({ id, qty })), mode, address: f.address.value.trim(),
+      name: f.name.value.trim(), phone: f.phone.value.trim(), time: f.time.value, notes: f.notes.value.trim(),
+      payment: payment === "card" ? "card" : "arrival", optIn: f.optIn.checked, displayName: f.displayName.value.trim()
+    }) });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || "Could not place order");
+    if (data.checkoutUrl) { location.href = data.checkoutUrl; return; }
+    $("shop").classList.add("hide"); $("done").classList.remove("hide");
+    $("doneTitle").textContent = "Order received"; $("doneRef").textContent = "Reference " + data.ref;
+    $("doneText").textContent = "Pay " + aed(data.total) + " on arrival. We will confirm on WhatsApp.";
+  } catch (err) { setMsg(err.message); $("place").disabled = false; }
+});
+
+loadMenu();
+</script>
+<script src="config.js"></script>
+</body></html>
